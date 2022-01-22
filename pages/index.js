@@ -1,5 +1,7 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Property from "../components/Property";
+import { baseUrl, estateApi } from "../services/estateApi";
 
 export const Banner = ({
   imageURL,
@@ -14,7 +16,7 @@ export const Banner = ({
   return (
     <Flex alignItems={"center"} justifyContent={"center"}>
       <Box>
-        <Image src={imageURL} alt="bannerImage" width="500px" height="300px" />
+        <Image src={imageURL} alt="bannerImage" width="600px" height="350px" />
       </Box>
       <Box>
         <Flex flexDirection={"column"} gap={"10px"} p={"5"}>
@@ -37,9 +39,11 @@ export const Banner = ({
   );
 };
 
-export default function Home() {
+export default function Home({ forRent, forSale }) {
+  console.log(forRent);
+  console.log(forSale);
   return (
-    <Flex width={"full"} minH={"100vh"} height="100%" alignItems={"center"} justifyContent={"center"} flexDirection={"column"} gap={"40px 0"}>
+    <>
       <Banner
         imageURL={
           "https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
@@ -52,6 +56,15 @@ export default function Home() {
         buttonName={"Explore Renting"}
         buttonIsActive={false}
       />
+
+      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"}>
+        {
+          forRent.map(item => {
+            return <Property key={item.id} item={item} />
+          })
+        }
+      </Flex>
+
       <Banner
         imageURL={
           "https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008"
@@ -64,6 +77,26 @@ export default function Home() {
         buttonName={"Explore Buying"}
         buttonIsActive={true}
       />
-    </Flex>
+      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"}>
+        {
+          forSale.map(item => {
+            return <Property key={item.id} item={item} />
+          })
+        }
+      </Flex>
+    </>
   );
+}
+
+export async function getStaticProps() {
+  const forRent = await estateApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`);
+  const forSale = await estateApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`);
+
+  return {
+    props: {
+      forRent: forRent.hits,
+      forSale: forSale.hits
+    }
+  }
+
 }
