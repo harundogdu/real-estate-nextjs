@@ -12,13 +12,18 @@
     "@chakra-ui/react": "^1.7.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@tatjsn/react-slick": "^0.11.1",
     "axios": "^0.25.0",
     "framer-motion": "^5",
+    "html-react-parser": "^1.4.5",
     "millify": "^4.0.0",
     "next": "12.0.8",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "eslint": "8.7.0",
