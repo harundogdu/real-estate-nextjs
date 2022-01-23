@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
                 <title>Real Estate</title>
             </Head>
             <Navbar />
-            <main style={{ flex: 1, width: "100%", height: "100%" }}>{children}</main>
+            <main style={{ flex: 1, width: "100%", height: "100%", marginTop: "80px" }}>{children}</main>
             <Footer />
         </Flex>
     );

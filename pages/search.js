@@ -1,16 +1,12 @@
 import React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { BsFillFilterSquareFill } from 'react-icons/bs'
-import { useRouter } from 'next/router';
 import SearchFilters from '../components/SearchFilters';
 import { baseUrl, estateApi } from "../services/estateApi";
 import Property from '../components/Property';
-import NoFoundSvg from '../assets/images/no-found.svg'
-import Image from 'next/image';
 
 const Search = ({ properties }) => {
     const [searchFiltersOpen, setSearchFiltersOpen] = React.useState(false);
-    const router = useRouter();
     return (
         <>
             <Flex
