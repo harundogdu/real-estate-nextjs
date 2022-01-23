@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import Property from "../components/Property";
 import { baseUrl, estateApi } from "../services/estateApi";
 
@@ -11,10 +12,11 @@ export const Banner = ({
   description,
   descriptionLower,
   buttonName,
-  buttonIsActive
+  buttonIsActive,
+  linkName
 }) => {
   return (
-    <Flex alignItems={"center"} justifyContent={"center"}>
+    <Flex alignItems={"center"} justifyContent={"center"} mt="10">
       <Box>
         <Image src={imageURL} alt="bannerImage" width="600px" height="350px" />
       </Box>
@@ -30,8 +32,8 @@ export const Banner = ({
             {description} <br />
             {descriptionLower}
           </Text>
-          <Button colorScheme={buttonIsActive ? "linkedin" : "gray"} size={"lg"} fontSize={"lg"}>
-            {buttonName}
+          <Button colorScheme={buttonIsActive ? "linkedin" : "gray"} size="lg" fontSize="lg">
+            <Link href={linkName}><a>{buttonName}</a></Link>
           </Button>
         </Flex>
       </Box>
@@ -40,8 +42,6 @@ export const Banner = ({
 };
 
 export default function Home({ forRent, forSale }) {
-  console.log(forRent);
-  console.log(forSale);
   return (
     <>
       <Banner
@@ -55,9 +55,10 @@ export default function Home({ forRent, forSale }) {
         descriptionLower={"and more"}
         buttonName={"Explore Renting"}
         buttonIsActive={false}
+        linkName="/search?purpose=for-rent"
       />
 
-      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"}>
+      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"} my="20">
         {
           forRent.map(item => {
             return <Property key={item.id} item={item} />
@@ -76,8 +77,9 @@ export default function Home({ forRent, forSale }) {
         descriptionLower={"villas and more"}
         buttonName={"Explore Buying"}
         buttonIsActive={true}
+        linkName="/search?purpose=for-sale"
       />
-      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"}>
+      <Flex flexWrap="wrap" alignItems={"center"} justifyContent={"center"} gap={"20px"} my="20">
         {
           forSale.map(item => {
             return <Property key={item.id} item={item} />

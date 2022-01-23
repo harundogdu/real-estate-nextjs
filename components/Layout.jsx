@@ -6,12 +6,12 @@ import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
     return (
-        <Flex width={"full"} minH={"100vh"} height="100%" alignItems={"center"} justifyContent={"center"} flexDirection={"column"} gap={"40px 0"}>
+        <Flex width={"full"} minH={"100vh"} height="100%" alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
             <Head>
                 <title>Real Estate</title>
             </Head>
             <Navbar />
-            {children}
+            <main style={{ flex: 1, width: "100%", height: "100%" }}>{children}</main>
             <Footer />
         </Flex>
     );

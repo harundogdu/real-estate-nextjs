@@ -1,12 +1,12 @@
-import { Box, Flex, IconButton, Text } from '@chakra-ui/react';
-import Image from 'next/image';
 import React from 'react';
-import DefaultImage from '../assets/images/house.jpg';
+import Image from 'next/image';
+import millify from 'millify';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { HiBadgeCheck } from 'react-icons/hi'
 import { Avatar } from '@chakra-ui/react'
 import { FaBed, FaBath } from 'react-icons/fa'
 import { RiApps2Fill } from 'react-icons/ri'
-import millify from 'millify';
+import DefaultImage from '../assets/images/house.jpg';
 
 const Property = ({ item }) => {
     const { rooms, bath, isVerified, agency: { logo }, price, title, rentFrequency, area } = item;

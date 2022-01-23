@@ -1,4 +1,5 @@
-import { Flex, Heading, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+/* eslint-disable @next/next/link-passhref */
+import { Box, Flex, Heading, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import React from 'react';
 import { FcHome } from 'react-icons/fc'
 import { BsSearch } from 'react-icons/bs'
@@ -10,9 +11,9 @@ import Link from 'next/link';
 const Navbar = () => {
     return (
         <Flex justifyContent="space-between" w="full" py="4" px="36" borderBottom="1px" borderColor="gray.200">
-            <Heading as="h1" color="blue.400">
+            <Box fontSize='3xl' color='blue.400' fontWeight='bold'>
                 <Link href="/">Realtor</Link>
-            </Heading>
+            </Box>
             <Menu>
                 <MenuButton
                     as={IconButton}
@@ -21,18 +22,26 @@ const Navbar = () => {
                     variant='outline'
                 />
                 <MenuList>
-                    <MenuItem icon={<FcHome />} >
-                        <Link href="/">Home</Link>
-                    </MenuItem>
-                    <MenuItem icon={<BsSearch />} >
-                        <Link href="/">Search</Link>
-                    </MenuItem>
-                    <MenuItem icon={<SiCashapp />} >
-                        <Link href="/search?purpose=for-sale">Buy Property</Link>
-                    </MenuItem>
-                    <MenuItem icon={<RiKey2Line />} >
-                        <Link href="/search?purpose=for-rent">Rent Property</Link>
-                    </MenuItem>
+                    <Link href="/">
+                        <MenuItem icon={<FcHome />} >
+                            Home
+                        </MenuItem>
+                    </Link>
+                    <Link href="/" passHref>
+                        <MenuItem icon={<BsSearch />} >
+                            Search
+                        </MenuItem>
+                    </Link>
+                    <Link href="/search?purpose=for-sale" passHref>
+                        <MenuItem icon={<SiCashapp />} >
+                            Buy Property
+                        </MenuItem>
+                    </Link>
+                    <Link href="/search?purpose=for-rent" passHref>
+                        <MenuItem icon={<RiKey2Line />} >
+                            Rent Property
+                        </MenuItem>
+                    </Link>
                 </MenuList>
             </Menu>
         </Flex>
